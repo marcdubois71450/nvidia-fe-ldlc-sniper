@@ -1,8 +1,10 @@
 # Description
 
-NVIDIA 3090 3080 3070 3060Ti LDLC Sniper
+NVIDIA 3090 3080 3070 3060Ti FE LDLC Sniper
 
 Old version : https://pastebin.com/raw/HMNDCiKd https://pastebin.com/raw/Kyh5Vg3L
+
+If you update the search on ldlc too often your IP address will be banned, that's why this bot is linked to a twitter account.
 
 # Start bot
 
@@ -25,15 +27,15 @@ screen -S ldlcbot
 cd nvidia-fe-ldlc-sniper
 python3 main.py >> /var/log/ldlcbot.log
 ```
-For quit screen CTRL+A and CTRL+D
+For quit screen ``CTRL+A`` and ``CTRL+D``
 
 
-- Check log all log
+- Check all log
 ```
 cat /var/log/ldlcbot.log
 ```
 
-- Check log live log
+- Check live log
 ```
 tail -f /var/log/ldlcbot.log
 ```
