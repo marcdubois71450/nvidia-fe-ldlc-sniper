@@ -6,6 +6,8 @@ Old version : https://pastebin.com/raw/HMNDCiKd https://pastebin.com/raw/Kyh5Vg3
 
 # Start bot
 
+First edit main.py
+
 ```
 git clone https://github.com/marcdubois71450/nvidia-fe-ldlc-sniper.git
 cd nvidia-fe-ldlc-sniper
