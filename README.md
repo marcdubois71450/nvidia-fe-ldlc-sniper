@@ -8,15 +8,13 @@ If you update the search on ldlc too often your IP address will be banned, that'
 
 # Start bot
 
-First edit main.py
-
 ```
 git clone https://github.com/marcdubois71450/nvidia-fe-ldlc-sniper.git
 cd nvidia-fe-ldlc-sniper
+nano main.py  # Set your ldlc account, card information and tweet api accès token. For save in nano: CTRL+O, for quit: CTRL+X
 pip3 install tweepy selenium requests webdriver-manager
 python3 main.py
 ```
-
 
  - In Screen
 
