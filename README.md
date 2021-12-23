@@ -9,7 +9,17 @@ If you update the search on ldlc too often your IP address will be banned, that'
 # Start bot
 
 ```
-apt install git python3-pip screen -y
+apt -y update
+apt install git python3-pip screen chromium unzip curl unzip xvfb libxi6 libgconf-2-4 default-jdk -y
+curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+apt -y update
+apt -y install google-chrome-stable
+wget https://chromedriver.storage.googleapis.com/96.0.4664.45/chromedriver_linux64.zip
+unzip chromedriver_linux64.zip
+mv chromedriver /usr/bin/chromedriver
+chown root:root /usr/bin/chromedriver
+chmod +x /usr/bin/chromedriver
 git clone https://github.com/marcdubois71450/nvidia-fe-ldlc-sniper.git
 cd nvidia-fe-ldlc-sniper
 nano main.py  # Set your ldlc account, card information and tweet api accès token. For save in nano: CTRL+O, for quit: CTRL+X
