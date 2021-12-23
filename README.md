@@ -10,7 +10,7 @@ If you update the search on ldlc too often your IP address will be banned, that'
 
 ```
 apt -y update
-apt install git python3-pip screen chromium unzip curl unzip xvfb libxi6 libgconf-2-4 default-jdk -y
+apt install git python3-pip screen unzip curl unzip xvfb libxi6 libgconf-2-4 default-jdk -y
 curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
 apt -y update
