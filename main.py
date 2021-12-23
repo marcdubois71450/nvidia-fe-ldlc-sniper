@@ -16,6 +16,7 @@ CARD = {
     'name': 'Xxxxxx Xxxxxxxxxx'
 }
 
+# Twitter
 consumer_key = 'x'
 consumer_secret = 'x'
 access_token = 'x'
