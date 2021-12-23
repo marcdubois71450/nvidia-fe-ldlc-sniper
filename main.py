@@ -24,7 +24,6 @@ access_token_secret = 'x'
 
 class IDPrinter(tweepy.Stream):
     def on_status(self, status):
-
         print('New tweet')
 
         links = []
@@ -44,10 +43,11 @@ class IDPrinter(tweepy.Stream):
                     print('Link no ldlc | {}'.format(link))
 
 if __name__ == "__main__":
-    printer = IDPrinter(
-      consumer_key, consumer_secret,
-      access_token, access_token_secret
-    )
-    print('Start listening twitter notification')
-    printer.filter(follow=['3068657781', '1183649809871310848', '1401296037147549697'])
-                            # marc            bavarnold           dropreference
+    while True:
+        printer = IDPrinter(
+          consumer_key, consumer_secret,
+          access_token, access_token_secret
+        )
+        print('Start listening twitter notification')
+        printer.filter(follow=['3068657781', '1183649809871310848', '1401296037147549697'])
+                                # marc            bavarnold           dropreference
