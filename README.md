@@ -22,21 +22,50 @@ chown root:root /usr/bin/chromedriver
 chmod +x /usr/bin/chromedriver
 git clone https://github.com/marcdubois71450/nvidia-fe-ldlc-sniper.git
 cd nvidia-fe-ldlc-sniper
-nano main.py  # Set your ldlc account, card information and tweet api accès token. For save in nano: CTRL+O, for quit: CTRL+X
 pip3 install tweepy selenium requests webdriver-manager lxml
+```
+We configure ldlc account, card information and tweet api accès token. For that we will use the `nano` text editor :
+```
+nano main.py 
+```
+You should see this
+```
+LDLC_ACCOUNT = {
+    'email' : 'user@domain.tld',
+    'password': 'amazingpassword'
+}
+
+CARD = {
+    'num' : 'XXXXXXXXXXXXXXXXXX',
+    'date': 'XX/XX',
+    'secret': 'XXX',
+    'name': 'Xxxxxx Xxxxxxxxxx'
+}
+
+# Twitter
+consumer_key = 'x'
+consumer_secret = 'x'
+access_token = 'x'
+access_token_secret = 'x'
+```
+Replace its information with your information
+
+You can now save the file with `CTRL + O` then `Enter`. And quit `nano` text editor with `CTRL + X`
+
+
+You can now start your bot 
+```
 python3 main.py
 ```
 
- - In Screen
-
+- Cron (Auto restart on reboot)
 ```
-screen -S ldlcbot
-
-cd nvidia-fe-ldlc-sniper
-python3 main.py >> /var/log/ldlcbot.log
+crontab -e
 ```
-For quit screen ``CTRL+A`` and ``CTRL+D``
-
+Add this below the comment :
+```
+@reboot cd /root/nvidia-fe-ldlc-sniper/ && /usr/bin/python3 main.py >> /var/log/ldlcbot.log 2>&1
+```
 
 - Check all log
 ```
@@ -48,7 +77,5 @@ cat /var/log/ldlcbot.log
 tail -f /var/log/ldlcbot.log
 ```
 
- - Re-enter in screen
-```
-screen -r ldlcbot
-```
+
+
