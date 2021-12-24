@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -12,9 +13,9 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 
 chrome_options = Options()
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--headless')                          # Sans ecran
+chrome_options.add_argument('--no-sandbox')                        #
+chrome_options.add_argument('--disable-dev-shm-usage')             #
 
 def buy_ldlc(link, LDLC_ACCOUNT, CARD):
     print('Commande de : {}'.format(link))
@@ -64,7 +65,7 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD):
         e.click();
         print('Click Passer la commande ok')
         time.sleep(4)
-        driver.save_screenshot('capture.png')
+        driver.save_screenshot('capture'+datetime.today().strftime('%Y_%m_%d_%H_%M_%S')+'.png')
         print('En attente de la validation de la commande')
         e = WebDriverWait(driver, 120).until(EC.element_to_be_clickable((By.XPATH, "//h2[contains(@class, 'title-1')]"))); # Check si la commande est passer
         merci = e.get_attribute("innerHTML")
