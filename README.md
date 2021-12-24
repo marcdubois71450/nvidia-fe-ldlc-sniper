@@ -6,8 +6,9 @@ Old version : https://pastebin.com/raw/HMNDCiKd https://pastebin.com/raw/Kyh5Vg3
 
 If you update the search on ldlc too often your IP address will be banned, that's why this bot is linked to a twitter account.
 
-# Start bot
+# Run bot
 
+Installation of necessary tools
 ```
 apt -y update
 apt install git python3-pip screen unzip curl unzip xvfb libxi6 libgconf-2-4 default-jdk -y
@@ -24,7 +25,7 @@ git clone https://github.com/marcdubois71450/nvidia-fe-ldlc-sniper.git
 cd nvidia-fe-ldlc-sniper
 pip3 install tweepy selenium requests webdriver-manager lxml
 ```
-We configure ldlc account, card information and tweet api accès token. For that we will use the `nano` text editor :
+We configure ldlc account, card information and tweet api acces token. For that we will use the `nano` text editor :
 ```
 nano main.py 
 ```
