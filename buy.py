@@ -65,7 +65,7 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD):
         e.click();
         print('Click Passer la commande ok')
         time.sleep(4)
-        driver.save_screenshot('capture'+datetime.today().strftime('%Y_%m_%d_%H_%M_%S')+'.png')
+        driver.save_screenshot('capture_'+datetime.today().strftime('%Y_%m_%d_%H_%M_%S')+'.png')
         print('En attente de la validation de la commande')
         e = WebDriverWait(driver, 120).until(EC.element_to_be_clickable((By.XPATH, "//h2[contains(@class, 'title-1')]"))); # Check si la commande est passer
         merci = e.get_attribute("innerHTML")
