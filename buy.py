@@ -48,7 +48,7 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD):
         e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//button[contains(@class, 'button maxi color2 noMarg')]"))) # Passer la commande
         e.click();
         print('Click Passer la commande ok')
-        e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//a[normalize-space()='Non merci']|//span[contains(@class, 'imgpayment img-cb')]"))) # Choisir le payement par carte
+        e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//a[normalize-space()='Non merci']|//span[contains(@class, 'imgpayment img-cb')]"))) # Choisir le payement par carte ou la garantie
         garantie = e.get_attribute("innerHTML")
 
         if 'non' in garantie.lower() and 'merci' in garantie.lower():
@@ -56,7 +56,7 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD):
             e.click()
             e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(@class, 'imgpayment img-cb')]"))) # Choisir le payement par carte
             e.click()
-         else:
+        else:
             e.click()
         
         print('Click Payement par carte ok')
