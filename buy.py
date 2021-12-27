@@ -35,9 +35,9 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD):
         e = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//div[contains(@class, 'account')]"))); # Account , pour ce connecter
         e.click();
         print('Click account ok')
-        user = driver.find_element_by_name("Email")
+        user = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "Email")))
         user.send_keys(LDLC_ACCOUNT['email'])
-        pas = driver.find_element_by_name("Password")
+        pas = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "Password")))
         pas.send_keys(LDLC_ACCOUNT['password'])
         print('Formulaire login ok')
         pas.submit()
@@ -48,23 +48,31 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD):
         e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//button[contains(@class, 'button maxi color2 noMarg')]"))) # Passer la commande
         e.click();
         print('Click Passer la commande ok')
-        e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(@class, 'imgpayment img-cb')]"))) # Choisir le payement par carte
-        e.click()
+        e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//a[normalize-space()='Non merci']|//span[contains(@class, 'imgpayment img-cb')]"))) # Choisir le payement par carte
+        garantie = e.get_attribute("innerHTML")
+
+        if 'non' in garantie.lower() and 'merci' in garantie.lower():
+            print("Garantie detecter")
+            e.click()
+            e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(@class, 'imgpayment img-cb')]"))) # Choisir le payement par carte
+            e.click()
+         else:
+            e.click()
+        
         print('Click Payement par carte ok')
-        time.sleep(1)
-        num = driver.find_element_by_name("CardNumber")
+        num = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "CardNumber")))
         num.send_keys(CARD['num'])
-        date = driver.find_element_by_name("ExpirationDate")
+        date = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "ExpirationDate")))
         date.send_keys(CARD['date'])
-        name = driver.find_element_by_name("OwnerName")
+        name = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "OwnerName")))
         name.send_keys(CARD['name'])
-        secret = driver.find_element_by_name("Cryptogram")
+        secret = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "Cryptogram")))
         secret.send_keys(CARD['secret'])
         print('Formulaire carte ok')
         e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//button[contains(@class, 'button color2 maxi')]"))) # Passer la commande
         e.click();
         print('Click Passer la commande ok')
-        time.sleep(4)
+        time.sleep(1)
         driver.save_screenshot('capture_0_'+datetime.today().strftime('%Y_%m_%d_%H_%M_%S')+'.png')
         print('En attente de la validation de la commande')
         e = WebDriverWait(driver, 120).until(EC.element_to_be_clickable((By.XPATH, "//h2[contains(@class, 'title-1')]"))); # Check si la commande est passer
