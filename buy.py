@@ -72,10 +72,9 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD):
         e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//button[contains(@class, 'button color2 maxi')]"))) # Passer la commande
         e.click();
         print('Click Passer la commande ok')
-        time.sleep(4)
         driver.save_screenshot('capture_0_'+datetime.today().strftime('%Y_%m_%d_%H_%M_%S')+'.png')
         print('En attente de la validation de la commande')
-        e = WebDriverWait(driver, 120).until(EC.element_to_be_clickable((By.XPATH, "//h2[contains(@class, 'title-1')]"))); # Check si la commande est passer
+        e = WebDriverWait(driver, 120).until(EC.element_to_be_clickable((By.XPATH, "//h2[normalize-space()='Merci !']"))); # Check si la commande est passer
         merci = e.get_attribute("innerHTML")
         driver.save_screenshot('capture_1_'+datetime.today().strftime('%Y_%m_%d_%H_%M_%S')+'.png')
         if "merci" in merci.lower():
