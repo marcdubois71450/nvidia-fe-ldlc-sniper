@@ -23,7 +23,7 @@ chown root:root /usr/bin/chromedriver
 chmod +x /usr/bin/chromedriver
 git clone https://github.com/marcdubois71450/nvidia-fe-ldlc-sniper.git
 cd nvidia-fe-ldlc-sniper
-pip3 install tweepy selenium requests webdriver-manager lxml
+pip3 install tweepy selenium requests lxml
 ```
 We configure ldlc account, card information and tweet api acces token. For that we will use the `nano` text editor :
 ```
