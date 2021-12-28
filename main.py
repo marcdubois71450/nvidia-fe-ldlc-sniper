@@ -2,8 +2,6 @@ import tweepy
 import logging
 from logging.handlers import SysLogHandler
 
-
-
 from check import card_is_ok
 from buy import buy_ldlc
 
