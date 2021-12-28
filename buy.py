@@ -49,6 +49,7 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD, logger):
         if 'non' in garantie.lower() and 'merci' in garantie.lower():
             logger.info("Garantie detecter")
             e.click()
+            logger.info("Click Non merci garantie ok")
             e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(@class, 'imgpayment img-cb')]"))) # Choisir le payement par carte
             e.click()
         else:
@@ -78,6 +79,7 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD, logger):
             logger.info('Achat non-effectué')
 
     except Exception as e:
+        logger.info("ERROR Detecter")
         driver.save_screenshot('capture_error_'+datetime.today().strftime('%Y_%m_%d_%H_%M_%S')+'.png')
         logger.info(e)
 
