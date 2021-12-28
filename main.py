@@ -30,23 +30,23 @@ class NvidiaTweetStream(tweepy.Stream):
         return
 
     def on_disconnect_message(self, notice):
-        logger.info('Twitter API | Disconnected:' + str(notice.code))
+        logger.info('Twitter API | Disconnected: {}'.format(str(notice.code)))
         return
 
     def on_limit(self, track):
-        logger.info('Twitter API | Receive limit has occurred:' + str(track))
+        logger.info('Twitter API | Receive limit has occurred: {}'.format(str(track)))
         return
 
     def on_warning(self, notice):
-        logger.info('Twitter API | Warning message:' + str(notice.message))
+        logger.info('Twitter API | Warning message: {}'.format(str(notice.message)))
         return
 
     def on_exception(self, exception):
-        logger.info('Twitter API | Exception error:' + str(exception))
+        logger.info('Twitter API | Exception error: {}'.format(str(exception)))
         return
 
     def on_request_error(self, status_code):
-        logger.info('Twitter API | Error status_code : {} | retry...'.format(str(status_code)))
+        logger.info('Twitter API | Error status_code: {} | retry...'.format(str(status_code)))
         return True
 
     def on_connection_error(self):
