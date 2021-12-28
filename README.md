@@ -64,7 +64,7 @@ crontab -e
 ```
 Add this below the comment :
 ```
-@reboot cd /root/nvidia-fe-ldlc-sniper/ && sleep 5 && /usr/bin/python3 main.py
+@reboot cd /root/nvidia-fe-ldlc-sniper/ && sleep 30 && /usr/bin/python3 main.py
 ```
 
 - Check all log
