@@ -24,10 +24,37 @@ consumer_secret = 'x'
 access_token = 'x'
 access_token_secret = 'x'
 
-class IDPrinter(tweepy.Stream):
-    def on_status(self, status):
-        logger.info('New tweet')
+class NvidiaTweetStream(tweepy.Stream):
+    def on_connect(self):
+        logger.info('Twitter API | Connected')
+        return
 
+    def on_disconnect_message(self, notice):
+        logger.info('Twitter API | Disconnected:' + str(notice.code))
+        return
+
+    def on_limit(self, track):
+        logger.info('Twitter API | Receive limit has occurred:' + str(track))
+        return
+
+    def on_warning(self, notice):
+        logger.info('Twitter API | Warning message:' + str(notice.message))
+        return
+
+    def on_exception(self, exception):
+        logger.info('Twitter API | Exception error:' + str(exception))
+        return
+
+    def on_request_error(self, status_code):
+        logger.info('Twitter API | Error status_code : {} | retry...'.format(str(status_code)))
+        return True
+
+    def on_connection_error(self):
+        logger.info('Twitter API | Error timout, retry...')
+        return True
+
+    def on_status(self, status):
+        logger.info('New tweet | https://twitter.com/twitter/statuses/{}'.format(str(status._json['id'])))
         links = []
         for link in status._json['entities']['urls']:
             links.append(str(link['expanded_url']))
@@ -46,18 +73,17 @@ class IDPrinter(tweepy.Stream):
 
 if __name__ == "__main__":
     logger = logging.getLogger("nvidia-fe-ldlc-sniper")
-    formatter = logging.Formatter('%(asctime)s | %(message)s')
-    fileHandler = logging.FileHandler('/var/log/nvidia-sniper.log', mode='w')
-    fileHandler.setFormatter(formatter)
-    streamHandler = logging.StreamHandler()
-    streamHandler.setFormatter(formatter)
     logger.setLevel('DEBUG')
-    logger.addHandler(fileHandler)
-    logger.addHandler(streamHandler)
-
+    syslog = SysLogHandler('/dev/log', 'daemon')
+    syslog.setLevel('DEBUG')
+    format_str = "nvidia-fe-ldlc-sniper: {message}"
+    formatter = logging.Formatter(format_str, style="{")
+    syslog.setFormatter(formatter)
+    logger.addHandler(syslog)
+    logger.info("nvidia-fe-ldlc-sniper started")
 
     while True:
-        printer = IDPrinter(
+        printer = NvidiaTweetStream(
           consumer_key, consumer_secret,
           access_token, access_token_secret
         )
