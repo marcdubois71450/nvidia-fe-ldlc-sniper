@@ -26,10 +26,6 @@ consumer_secret = 'x'
 access_token = 'x'
 access_token_secret = 'x'
 
-
-
-
-
 class IDPrinter(tweepy.Stream):
     def on_status(self, status):
         logger.info('New tweet')
@@ -48,16 +44,16 @@ class IDPrinter(tweepy.Stream):
                     else:
                         logger.info('Card nok | {}'.format(link))
                 else:
-                    logger.info('Link no ldlc | {}'.format(link))
+                    logger.info('No Ldlc link | {}'.format(link))
 
 if __name__ == "__main__":
     logger = logging.getLogger("nvidia-fe-ldlc-sniper")
-    formatter = logging.Formatter('%(asctime)s | %(levelname)s | %(message)s')
-    fileHandler = logging.FileHandler('/dev/log', mode='w')
+    formatter = logging.Formatter('%(asctime)s | %(message)s')
+    fileHandler = logging.FileHandler('/var/log/nvidia-sniper.log', mode='w')
     fileHandler.setFormatter(formatter)
     streamHandler = logging.StreamHandler()
     streamHandler.setFormatter(formatter)
-    logger.setLevel('debug')
+    logger.setLevel('DEBUG')
     logger.addHandler(fileHandler)
     logger.addHandler(streamHandler)
 

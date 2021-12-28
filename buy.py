@@ -1,16 +1,11 @@
 import time
 from datetime import datetime
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import NoSuchElementException
 
 chrome_options = Options()
 chrome_options.add_argument('--headless')                          # Sans ecran

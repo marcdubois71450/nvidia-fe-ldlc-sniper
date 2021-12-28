@@ -27,7 +27,7 @@ pip3 install tweepy selenium requests webdriver-manager lxml
 ```
 We configure ldlc account, card information and tweet api acces token. For that we will use the `nano` text editor :
 ```
-nano main.py 
+nano main.py
 ```
 You should see this
 ```
@@ -54,7 +54,7 @@ Replace its information with your information
 You can now save the file with `CTRL + O` then `Enter`. And quit `nano` text editor with `CTRL + X`
 
 
-You can now start your bot 
+You can now start your bot
 ```
 python3 main.py
 ```
@@ -65,18 +65,15 @@ crontab -e
 ```
 Add this below the comment :
 ```
-@reboot cd /root/nvidia-fe-ldlc-sniper/ && /usr/bin/python3 main.py >> /var/log/ldlcbot.log 2>&1
+@reboot cd /root/nvidia-fe-ldlc-sniper/ && /usr/bin/python3 main.py
 ```
 
 - Check all log
 ```
-cat /var/log/ldlcbot.log
+cat /var/log/nvidia-sniper.log
 ```
 
 - Check live log
 ```
-tail -f /var/log/ldlcbot.log
+tail -f /var/log/nvidia-sniper.log
 ```
-
-
-
