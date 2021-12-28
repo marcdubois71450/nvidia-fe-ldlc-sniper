@@ -50,7 +50,7 @@ class NvidiaTweetStream(tweepy.Stream):
         return True
 
     def on_connection_error(self):
-        logger.info('Twitter API | Error timout, retry...')
+        logger.info('Twitter API | Error timeout, retry...')
         return True
 
     def on_status(self, status):
