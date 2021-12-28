@@ -1,4 +1,8 @@
 import tweepy
+import logging
+from logging.handlers import SysLogHandler
+
+
 
 from check import card_is_ok
 from buy import buy_ldlc
@@ -22,32 +26,47 @@ consumer_secret = 'x'
 access_token = 'x'
 access_token_secret = 'x'
 
+
+
+
+
 class IDPrinter(tweepy.Stream):
     def on_status(self, status):
-        print('New tweet')
+        logger.info('New tweet')
 
         links = []
         for link in status._json['entities']['urls']:
             links.append(str(link['expanded_url']))
 
         if len(links) == 0:
-            print('No link in this tweet')
+            logger.info('No link in this tweet')
         else:
             for link in links:
                 if 'ldlc.com' in link:
-                    if card_is_ok(link):
-                        buy_ldlc(link, LDLC_ACCOUNT, CARD)
+                    if card_is_ok(link, logger):
+                        buy_ldlc(link, LDLC_ACCOUNT, CARD, logger)
                     else:
-                        print('Card nok | {}'.format(link))
+                        logger.info('Card nok | {}'.format(link))
                 else:
-                    print('Link no ldlc | {}'.format(link))
+                    logger.info('Link no ldlc | {}'.format(link))
 
 if __name__ == "__main__":
+    logger = logging.getLogger("nvidia-fe-ldlc-sniper")
+    formatter = logging.Formatter('%(asctime)s | %(levelname)s | %(message)s')
+    fileHandler = logging.FileHandler('/dev/log', mode='w')
+    fileHandler.setFormatter(formatter)
+    streamHandler = logging.StreamHandler()
+    streamHandler.setFormatter(formatter)
+    logger.setLevel('debug')
+    logger.addHandler(fileHandler)
+    logger.addHandler(streamHandler)
+
+
     while True:
         printer = IDPrinter(
           consumer_key, consumer_secret,
           access_token, access_token_secret
         )
-        print('Start listening twitter notification')
+        logger.info('Start listening twitter notification...')
         printer.filter(follow=['3068657781', '1183649809871310848', '1401296037147549697'])
                                 # marc            bavarnold           dropreference
