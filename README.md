@@ -76,3 +76,8 @@ cat /var/log/daemon.log |grep 'nvidia-fe-ldlc-sniper'
 ```
 tail -f /var/log/daemon.log |grep 'nvidia-fe-ldlc-sniper'
 ```
+
+- Check if bot is running 
+```
+ps aux |grep python3
+```
