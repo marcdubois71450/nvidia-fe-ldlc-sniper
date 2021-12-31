@@ -69,12 +69,12 @@ Add this below the comment :
 
 - Check all log
 ```
-cat /var/log/daemon.log |grep 'nvidia-fe-ldlc-sniper'
+cat /var/log/syslog |grep 'nvidia-fe-ldlc-sniper'
 ```
 
 - Check live log
 ```
-tail -f /var/log/daemon.log |grep 'nvidia-fe-ldlc-sniper'
+tail -f /var/log/syslog |grep 'nvidia-fe-ldlc-sniper'
 ```
 
 - Check if bot is running 
