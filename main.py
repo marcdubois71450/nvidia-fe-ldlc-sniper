@@ -74,7 +74,7 @@ class NvidiaTweetStream(tweepy.Stream):
 if __name__ == "__main__":
     logger = logging.getLogger("nvidia-fe-ldlc-sniper")
     logger.setLevel('DEBUG')
-    syslog = SysLogHandler('/dev/log', 'daemon')
+    syslog = SysLogHandler('/dev/log', 'syslog')
     syslog.setLevel('DEBUG')
     format_str = "nvidia-fe-ldlc-sniper: {message}"
     formatter = logging.Formatter(format_str, style="{")
