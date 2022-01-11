@@ -85,8 +85,6 @@ class NvidiaTweetStream(tweepy.Stream):
                                     card_status = card_status_new
                                     break
 
-                            card_status = card_status_new
-
                             if card_status == 'no':
                                 logger.info('Card nok | {}'.format(link))
                             elif card_status == 'yes':

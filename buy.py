@@ -169,19 +169,19 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD, logger):
             secret.send_keys(CARD['secret'])
             logger.info('Formulaire carte ok')
             e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//button[contains(@class, 'button color2 maxi')]"))) # Passer la commande
-        #    e.click();
-        #    logger.info('Click Passer la commande ok')
-        #    driver.save_screenshot('capture_0_'+datetime.today().strftime('%Y_%m_%d_%H_%M_%S')+'.png')
-        #    logger.info('En attente de la validation de la commande (5min max)')
-        #    e = WebDriverWait(driver, 300).until(EC.element_to_be_clickable((By.XPATH, "//h2[normalize-space()='Merci !']"))); # Check si la commande est passer
-        #    merci = e.get_attribute("innerHTML")
-        #    driver.save_screenshot('capture_1_'+datetime.today().strftime('%Y_%m_%d_%H_%M_%S')+'.png')
-        #    if "merci" in merci.lower():
-        #        logger.info('Achat effectué')
-        #        RESULT = True
-        #    else:
-        #        logger.info('Achat non-effectué')
-        #        RESULT = False
+            e.click();
+            logger.info('Click Passer la commande ok')
+            driver.save_screenshot('capture_0_'+datetime.today().strftime('%Y_%m_%d_%H_%M_%S')+'.png')
+            logger.info('En attente de la validation de la commande (5min max)')
+            e = WebDriverWait(driver, 300).until(EC.element_to_be_clickable((By.XPATH, "//h2[normalize-space()='Merci !']"))); # Check si la commande est passer
+            merci = e.get_attribute("innerHTML")
+            driver.save_screenshot('capture_1_'+datetime.today().strftime('%Y_%m_%d_%H_%M_%S')+'.png')
+            if "merci" in merci.lower():
+                logger.info('Achat effectué')
+                RESULT = True
+            else:
+                logger.info('Achat non-effectué')
+                RESULT = False
 
     except Exception as e:
         RESULT = False
