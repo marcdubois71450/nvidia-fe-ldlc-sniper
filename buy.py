@@ -6,13 +6,25 @@ import requests
 from random import randrange
 
 from datetime import datetime
-
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def buy_ldlc(link, LDLC_ACCOUNT, CARD, logger, driver):
+def buy_ldlc(link, LDLC_ACCOUNT, CARD, logger):
+
+    logger.info("chrome start ...")
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')                          # Sans ecran
+    chrome_options.add_argument('--no-sandbox')                        #
+    chrome_options.add_argument('--disable-dev-shm-usage')             #
+    chrome_options.add_argument("--window-size=1920,1080")
+    driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver', options=chrome_options)
+    logger.info("chrome started")
+
+
     RESULT = False
 
     if '?' in link.split('/')[-1]:

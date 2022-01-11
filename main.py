@@ -1,9 +1,7 @@
 import time
 import tweepy
 import logging
-from selenium import webdriver
 from logging.handlers import SysLogHandler
-from selenium.webdriver.chrome.options import Options
 
 from check import card_is_ok
 from buy import buy_ldlc
@@ -92,7 +90,7 @@ class NvidiaTweetStream(tweepy.Stream):
                             if card_status == 'no':
                                 logger.info('Card nok | {}'.format(link))
                             elif card_status == 'yes':
-                                r = buy_ldlc(link, LDLC_ACCOUNT, CARD, logger, driver)
+                                r = buy_ldlc(link, LDLC_ACCOUNT, CARD, logger)
                                 if r:
                                     logger.info('Order Success | {}'.format(link))
                                 else:
@@ -105,25 +103,16 @@ class NvidiaTweetStream(tweepy.Stream):
                         logger.info('No Ldlc link | {}'.format(link))
 
 if __name__ == "__main__":
-    logger = logging.getLogger("nvidia-fe-ldlc-sniper-twetter")
+    logger = logging.getLogger("nvidia-fe-ldlc-sniper")
     logger.setLevel('DEBUG')
     syslog = SysLogHandler('/dev/log', 'syslog')
     syslog.setLevel('DEBUG')
-    format_str = "nvidia-fe-ldlc-sniper-twetter: {message}"
+    format_str = "nvidia-fe-ldlc-sniper: {message}"
     formatter = logging.Formatter(format_str, style="{")
     syslog.setFormatter(formatter)
     logger.addHandler(syslog)
-    logger.info("nvidia-fe-ldlc-sniper-twetter started")
+    logger.info("nvidia-fe-ldlc-sniper started")
 
-    # Start Chrome
-    logger.info("chrome start ...")
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')                          # Sans ecran
-    chrome_options.add_argument('--no-sandbox')                        #
-    chrome_options.add_argument('--disable-dev-shm-usage')             #
-    chrome_options.add_argument("--window-size=1920,1080")
-    driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver', options=chrome_options)
-    logger.info("chrome started")
 
     LINK_TESTED = []
 
