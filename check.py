@@ -61,7 +61,7 @@ def card_is_ok(link, logger):
                         logger.info('3080 is not activated')
                         return 'no'
 
-                if '12 Go GDDR6' in desc.lower():
+                if '12 Go GDDR6'.lower() in desc.lower():
                     if 710 <= prix <= 1100:
                         logger.info('Price is ok')
                         if ACTIVATE['3080']:
