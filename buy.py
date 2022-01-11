@@ -38,9 +38,9 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD, logger, driver):
         pas.submit()
         logger.info('Submit connexion ok')
 
-        e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/header/div[2]/div/div/div[2]/a/img"))) # Click Home logo
+        e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id='panier']/span[1]"))) # Click Panier logo
         e.click();
-        logger.info('Click Home Logo ok')
+        logger.info('Click Panier Logo ok')
 
         driver.get(link)
         logger.info('Load link ok')
