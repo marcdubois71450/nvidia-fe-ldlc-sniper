@@ -38,9 +38,9 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD, logger, driver):
         pas.submit()
         logger.info('Submit connexion ok')
 
-        e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id='panier']/span[1]"))) # Click Panier logo
+        e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/header/div[2]/div/div/div[2]/a/img"))) # Click Home logo
         e.click();
-        logger.info('Click Panier Logo ok')
+        logger.info('Click Home Logo ok')
 
         driver.get(link)
         logger.info('Load link ok')
@@ -90,7 +90,7 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD, logger, driver):
             e = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[@id='modal-mise-panier']/div/div/div/div[1]/div[2]/div[3]/a"))); # Voir le panier
             e.click();
             logger.info('Click Voir le panier ok')
-            e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id='form2']/button"))) # Passer la commande
+            e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//button[@class='button maxi color2 noMarg']"))) # Passer la commande
             e.click();
             logger.info('Click Passer la commande ok')
             e = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//a[normalize-space()='Non merci']|//span[contains(@class, 'imgpayment img-cb')]"))) # Choisir le payement par carte ou la garantie
