@@ -45,37 +45,43 @@ def buy_ldlc(link, LDLC_ACCOUNT, CARD, logger, driver):
         driver.get(link)
         logger.info('Load link ok')
 
-        e2 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id='product-page-price']/div[2]/button[2]"))) # Ajouter au panier
-        e1 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id='product-page-price']/div[2]/button[1]"))) # Ajouter au panier
+        type_2 = 'none'
+        try:
+            e2 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id='product-page-price']/div[2]/button[2]")))
+            if e2.is_displayed():
+                text2 = e2.get_attribute("innerHTML")
+                if 'ajouter' in text2.lower() and 'panier' in text2.lower():
+                    type_2 = 'panier'
 
-        if e1.is_displayed():
-            text1 = e1.get_attribute("innerHTML")
-            if 'ajouter' in text1.lower() and 'panier' in text1.lower():
-                type_1 = 'panier'
+                elif 'acheter' in text2.lower() and 'article' in text2.lower():
+                    type_2 = 'direct'
 
-            elif 'acheter' in text1.lower() and 'article' in text1.lower():
-                type_1 = 'direct'
-
-            else:
-                type_1 = 'none'
-        else:
-            type_1 = 'none'
-
-
-        if e2.is_displayed():
-            text2 = e2.get_attribute("innerHTML")
-            if 'ajouter' in text2.lower() and 'panier' in text2.lower():
-                type_2 = 'panier'
-
-            elif 'acheter' in text2.lower() and 'article' in text2.lower():
-                type_2 = 'direct'
+                else:
+                    type_2 = 'none'
 
             else:
                 type_2 = 'none'
+        except:
+            pass
 
-        else:
-            type_2 = 'none'
+        type_1 = 'none'
+        try:
+            e1 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id='product-page-price']/div[2]/button[1]")))
 
+            if e1.is_displayed():
+                text1 = e1.get_attribute("innerHTML")
+                if 'ajouter' in text1.lower() and 'panier' in text1.lower():
+                    type_1 = 'panier'
+
+                elif 'acheter' in text1.lower() and 'article' in text1.lower():
+                    type_1 = 'direct'
+
+                else:
+                    type_1 = 'none'
+            else:
+                type_1 = 'none'
+        except:
+            pass
 
         FAIL = True
         if type_1 == 'panier' or type_2 == 'panier':
