@@ -27,7 +27,7 @@ pip3 install tweepy selenium requests lxml
 ```
 We configure ldlc account, card information and tweet api acces token. For that we will use the `nano` text editor :
 ```
-nano main.py
+nano config.py
 ```
 You should see this
 ```
@@ -77,7 +77,7 @@ cat /var/log/syslog |grep 'nvidia-fe-ldlc-sniper'
 tail -f /var/log/syslog |grep 'nvidia-fe-ldlc-sniper'
 ```
 
-- Check if bot is running 
+- Check if bot is running
 ```
 ps aux |grep python3
 ```
