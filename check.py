@@ -53,7 +53,7 @@ def card_is_ok(link, logger):
         if 'HDMI/Tri DisplayPort'.lower() in desc.lower():
             if '3080' in title.lower():
                 logger.info('3080 Detect')
-                if 710 <= prix <= 730:
+                if 710 <= prix <= 770:
                     logger.info('Price is ok')
                     if ACTIVATE['3080']:
                         return 'yes'
@@ -72,7 +72,7 @@ def card_is_ok(link, logger):
 
             elif '3060' in title.lower() and 'TI'.lower() in title.lower():
                 logger.info('3060Ti Detect')
-                if 410 <= prix <= 430:
+                if 410 <= prix <= 450:
                     logger.info('Price is ok')
                     if ACTIVATE['3060']:
                         return 'yes'
@@ -82,7 +82,7 @@ def card_is_ok(link, logger):
 
             elif '3070' in title.lower():
                 logger.info('3070 Detect')
-                if 510 <= prix <= 530:
+                if 510 <= prix <= 560:
                     logger.info('Price is ok')
                     if ACTIVATE['3070']:
                         return 'yes'
@@ -92,7 +92,7 @@ def card_is_ok(link, logger):
 
             elif '3090' in title.lower():
                 logger.info('3090 Detect')
-                if 1540 <= prix <= 1560:
+                if 1540 <= prix <= 1660:
                     logger.info('Price is ok')
                     if ACTIVATE['3090']:
                         return 'yes'
